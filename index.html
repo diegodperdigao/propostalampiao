@@ -93,7 +93,7 @@
                     <input type="password" id="password-input" placeholder="••••••••" 
                         class="w-full bg-black/40 border border-white/10 px-4 py-4 rounded text-center text-white focus:outline-none focus:border-pink-500 transition-all tracking-widest font-mono">
                     
-                    <!-- NOVO: Mensagem de erro visual clara -->
+                    <!-- Mensagem de erro visual clara -->
                     <p id="login-error-msg" class="text-red-500 text-xs font-bold tracking-widest h-2 opacity-0 transition-opacity duration-300">SENHA INCORRETA</p>
                     
                     <button type="button" onclick="checkPassword()" class="w-full bg-white text-black font-black uppercase tracking-widest py-4 rounded hover:bg-pink-500 hover:text-white transition-all duration-300 active:scale-95">
@@ -275,24 +275,18 @@
         */
         const CONFIG = {
             influencer: "Lampião",
-            // IMPORTANTE: Cole abaixo o "Endereço da imagem" direto (terminado em .png, .jpg ou .webp)
             partnerLogo: "https://i.ibb.co/nKWkvL7/image-1732124311458251.webp", 
             password: "3c2026",
 
-            // NOVO: DADOS DO TALENT DECK
+            // DADOS DO TALENT DECK
             talentDeck: {
-                // Redes Sociais (Deixe vazio "" se não houver a rede)
                 instagram: "https://www.instagram.com/lampiaooficial_/",
-                liveChannel: "https://t.me/+x-XkrYcBqb9kZDUx", // Pode ser twitch, youtube, etc.
-                group: "https://canalgratuito.com/grupo-vip?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnNPAegdDxBZcDnMcdFLLAj4pi6f2C7-ipPMVDTe9wmkE0n2h5qe9tCfOLL3I_aem_mn5cSGCTrsCKVtIUKiwxpw", // Telegram, Whatsapp, Discord
+                liveChannel: "https://t.me/+x-XkrYcBqb9kZDUx", 
+                group: "https://canalgratuito.com/grupo-vip?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnNPAegdDxBZcDnMcdFLLAj4pi6f2C7-ipPMVDTe9wmkE0n2h5qe9tCfOLL3I_aem_mn5cSGCTrsCKVtIUKiwxpw",
                 
-                // Informações Adicionais
-                // Cole aqui o link de compartilhamento do Google Drive ou do YouTube!
-                evidencesLink: "https://drive.google.com/file/d/SEU_LINK_AQUI/view", 
-                // Texto com highlights e observações comerciais
+                // Link do YouTube Inserido
+                evidencesLink: "https://youtube.com/shorts/7S-MDXFZJ4g?feature=share", 
                 observations: "Expert de roleta com alto potencial de depósitos."
-
-"
             },
 
             // PROPOSTA COMERCIAL
@@ -302,28 +296,26 @@
             bonusPorFaixa: 10000,  
             valorFaixa: 100000,
 
-            // Títulos das Opções Sincronizados
             titleOptionA: "OPÇÃO A (50% ANTECIPADO)",
             titleOptionB: "OPÇÃO B (PÓS PERFOMANCE)",
 
-            isDualPath: false, // Deixei false para mostrar o modo único 
-            paymentMode: 5, // 1: 100% Antecip, 2: 50/50, 3: Pós, 4: % Excedente, 5: % Depósitos Total (Acumulado)
+            isDualPath: false, 
+            paymentMode: 5, 
             
-            // Porcentagem de comissão sobre Depósitos (usada nos paymentModes 4 e 5)
             depositPercentage: 10, 
             
             marketing: {
-                show: false, // <-- Desligado para o modelo Expert
+                show: false,
                 label: "AÇÕES DE MARKETING",
                 valor: 1000,
                 desc: "Verba destinada a ativações e sorteios com viewers durante as transmissões."
             },
 
             trafegoPago: {
-                show: true,  // <-- Ligado para o modelo Expert
+                show: true,  
                 label: "VERBA DE TRÁFEGO PAGO",
-                valor: 4000, // Ajuste o valor esperado de investimento em tráfego aqui
-                desc: "Orçamento exclusivo disponibilizado pela operação para impulsionar as campanhas de captação via Ads do parceiro. Será investido de R$ 200 a 250 por dia durante o mês de Março e em Abril faremos uma validação sobre o ROA da campanha."
+                valor: 4000, 
+                desc: "Orçamento exclusivo disponibilizado pela operação para impulsionar as campanhas de captação via Ads do parceiro. Será investido de R$ 200 a 250 por dia durante o mês de Março e em Abril faremos uma validação sobre o ROA da campanha"
             },
 
             kpi: {
@@ -391,13 +383,13 @@
             }
             socialGrid.innerHTML = socialHTML;
 
-            // 2. Informações Adicionais
+            // 2. Informações Adicionais (COM DETECÇÃO MELHORADA DE YOUTUBE E VÍDEOS)
             const linkEvidencias = document.getElementById('evidences-link-container');
             if (CONFIG.talentDeck.evidencesLink) {
                 const linkStr = CONFIG.talentDeck.evidencesLink.toLowerCase();
-                // O sistema agora detecta .mp4, Google Drive e YouTube automaticamente como vídeos!
+                // A inteligência agora reconhece mp4, YouTube e Drive!
                 const isVideo = linkStr.endsWith('.mp4') || linkStr.includes('youtube.com') || linkStr.includes('youtu.be') || linkStr.includes('drive.google.com/file');
-                
+
                 const btnIcon = isVideo ? 'play-circle' : 'external-link';
                 const btnText = isVideo ? 'Assistir Vídeo' : 'Visualizar Documento';
 
@@ -644,35 +636,43 @@
             lucide.createIcons();
         }
 
-        // Sistema de Senha
+        // Sistema de Senha (TOTALMENTE À PROVA DE FALHAS DE DIGITAÇÃO)
         const passInput = document.getElementById('password-input');
         const errorMsg = document.getElementById('login-error-msg');
 
         passInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                e.preventDefault(); // Evita que o enter atualize a página sem querer
+                e.preventDefault(); 
                 checkPassword();
             }
         });
         
         function checkPassword() {
-            // O .trim() garante que espaços acidentais (ao colar a senha) sejam ignorados!
-            if(passInput.value.trim() === CONFIG.password) {
+            // Remove espaços e ignora letras maiúsculas/minúsculas para garantir que sempre abra!
+            const typedPass = passInput.value.trim().toLowerCase();
+            const correctPass = CONFIG.password.trim().toLowerCase();
+            
+            if(typedPass === correctPass) {
                 errorMsg.style.opacity = '0';
                 document.getElementById('lock-screen').style.opacity = '0';
                 setTimeout(() => {
                     document.getElementById('lock-screen').style.display = 'none';
                     document.getElementById('main-content').classList.remove('hidden');
-                    init();
+                    // Chama a inicialização da proposta
+                    try {
+                        init();
+                    } catch (e) {
+                        console.error("Erro ao inicializar a proposta:", e);
+                    }
                 }, 700);
             } else {
                 passInput.classList.add('shake');
                 passInput.value = '';
-                errorMsg.style.opacity = '1'; // Mostra o texto de erro
+                errorMsg.style.opacity = '1'; 
                 
                 setTimeout(() => {
                     passInput.classList.remove('shake');
-                    errorMsg.style.opacity = '0'; // Esconde o erro depois de 2 segundos
+                    errorMsg.style.opacity = '0'; 
                 }, 2000);
             }
         }

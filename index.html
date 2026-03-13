@@ -287,10 +287,12 @@
                 group: "https://canalgratuito.com/grupo-vip?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnNPAegdDxBZcDnMcdFLLAj4pi6f2C7-ipPMVDTe9wmkE0n2h5qe9tCfOLL3I_aem_mn5cSGCTrsCKVtIUKiwxpw", // Telegram, Whatsapp, Discord
                 
                 // Informações Adicionais
-                // ATENÇÃO: O sistema agora detecta .mp4 e .pdf automaticamente!
-                evidencesLink: "https://youtube.com/shorts/7S-MDXFZJ4g?feature=share", 
+                // Cole aqui o link de compartilhamento do Google Drive ou do YouTube!
+                evidencesLink: "https://drive.google.com/file/d/SEU_LINK_AQUI/view", 
                 // Texto com highlights e observações comerciais
                 observations: "Expert de roleta com alto potencial de depósitos."
+
+"
             },
 
             // PROPOSTA COMERCIAL
@@ -321,7 +323,7 @@
                 show: true,  // <-- Ligado para o modelo Expert
                 label: "VERBA DE TRÁFEGO PAGO",
                 valor: 4000, // Ajuste o valor esperado de investimento em tráfego aqui
-                desc: "Orçamento exclusivo disponibilizado pela operação para impulsionar as campanhas de captação via Ads do parceiro. Será investido de R$ 200 a 250 por dia durante o mês de Março e em Abril faremos uma validação sobre o ROA da campanha"
+                desc: "Orçamento exclusivo disponibilizado pela operação para impulsionar as campanhas de captação via Ads do parceiro. Será investido de R$ 200 a 250 por dia durante o mês de Março e em Abril faremos uma validação sobre o ROA da campanha."
             },
 
             kpi: {
@@ -392,7 +394,10 @@
             // 2. Informações Adicionais
             const linkEvidencias = document.getElementById('evidences-link-container');
             if (CONFIG.talentDeck.evidencesLink) {
-                const isVideo = CONFIG.talentDeck.evidencesLink.toLowerCase().endsWith('.mp4');
+                const linkStr = CONFIG.talentDeck.evidencesLink.toLowerCase();
+                // O sistema agora detecta .mp4, Google Drive e YouTube automaticamente como vídeos!
+                const isVideo = linkStr.endsWith('.mp4') || linkStr.includes('youtube.com') || linkStr.includes('youtu.be') || linkStr.includes('drive.google.com/file');
+                
                 const btnIcon = isVideo ? 'play-circle' : 'external-link';
                 const btnText = isVideo ? 'Assistir Vídeo' : 'Visualizar Documento';
 
